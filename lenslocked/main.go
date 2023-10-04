@@ -3,12 +3,11 @@ package main
 import (
 	"fmt"
 	"net/http"
-	"github.com/bhagyashree-tiwari/lenslocked"
-
 )
 
 // handlerfunc is a function that handles incoming HTTP requests.
 func handlerfunc(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 	// Respond to the request with an HTML message.
 	fmt.Fprint(w, "<h1>Welcome to my site!</h1>")
 }
