@@ -34,13 +34,32 @@ func pathHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
+// type Router struct{}
+
+// func (router Router) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+// 	switch r.URL.Path {
+// 	case "/":
+// 		homeHandler(w, r)
+// 	case "/contact":
+// 		contactHandler(w, r)
+// 	default:
+// 		// Handle page not found error
+// 		http.Error(w, "Page Not Found", http.StatusNotFound)
+// 		// w.WriteHeader(http.StatusNotFound)
+// 		// fmt.Fprint(w, "Page Not Found")
+// 	}
+
+// }
 func main() {
+
+	// var router http.HandlerFunc = pathHandler
 	// Register the homeHandler function to handle requests at the root ("/") path.
-	http.HandleFunc("/", pathHandler)
+	// http.HandleFunc("/", pathHandler)
 
 	// http.HandleFunc("/contact", contactHandler)
 	fmt.Println("Starting the server on :3000....")
 
 	// Start the HTTP server on port 3000 and handle incoming requests using the default router (nil).
-	http.ListenAndServe(":3000", nil)
+	http.ListenAndServe(":3000", http.HandlerFunc(pathHandler))
+	// the above line is not a function call instead we are converting this function pathHandler to Handlerfunc type
 }
